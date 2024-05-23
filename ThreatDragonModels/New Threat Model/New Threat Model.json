@@ -1,16 +1,1998 @@
 {
   "version": "2.2.0",
   "summary": {
-    "title": "New Threat Model",
-    "owner": "",
-    "description": "",
+    "title": "Nuclarity",
+    "owner": "Simon DeKeyser",
+    "description": "PET image enhancement software product NUCLARITY",
     "id": 0
   },
   "detail": {
     "contributors": [],
-    "diagrams": [],
-    "diagramTop": 1,
-    "reviewer": "",
-    "threatTop": 0
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Cloud",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 830,
+              "y": 99.99999999999977
+            },
+            "size": {
+              "width": 630,
+              "height": 490
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "Private VPC + endpoints"
+              }
+            },
+            "zIndex": -1,
+            "id": "5198e43d-829a-436c-8e8b-5aaa58720bc3",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Private VPC + endpoints",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1040,
+              "y": 274.9999999999982
+            },
+            "size": {
+              "width": 200,
+              "height": 120
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "EC2 Instance"
+              }
+            },
+            "zIndex": -1,
+            "id": "2537fb5f-9d25-4bac-a287-4d4b14556f75",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "EC2 Instance",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 140,
+              "y": 320
+            },
+            "size": {
+              "width": 110,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "MDDS"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "61e2bd67-bf57-4afd-a891-a25b54e358c4",
+            "data": {
+              "type": "tm.Actor",
+              "name": "MDDS",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 550,
+              "y": 110
+            },
+            "size": {
+              "width": 120,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Cognito"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "1bedbc22-977b-4e08-a90b-e8f41c282538",
+            "data": {
+              "type": "tm.Process",
+              "name": "Cognito",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "d839894a-2c56-4bec-bd5b-e196fc0a1013",
+                  "title": "Unauthorized access via spoofed identity tokens",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker might use stolen credentials to authenticate as a legitimate user.",
+                  "mitigation": "Implement continuous monitoring for unusual login patterns and securily store client credentials on\nMDDS. Rotate credentials periodically.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "9"
+                },
+                {
+                  "id": "65926e1f-3269-4f9a-86fd-84569cef572b",
+                  "title": "Inability to audit or log user activities accurately",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "An attacker denies performing an action without traceability.",
+                  "mitigation": "Enable detailed logging and auditing features in Cognito to capture user activities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "7"
+                },
+                {
+                  "id": "07dc7ce7-c362-4642-9275-b8ca69d865d8",
+                  "title": "Leakage of sensitive user information or credentials",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Exposure of sensitive user information due to misconfigurations or security weaknesses.",
+                  "mitigation": "Use encryption for data at rest and in transit, and regularly review IAM policies and access controls.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "8"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 550,
+              "y": 305
+            },
+            "size": {
+              "width": 120,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "API Gateway"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "id": "a88a2a53-997c-4ce8-bc8c-00195fd0a944",
+            "data": {
+              "type": "tm.Process",
+              "name": "API Gateway",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "d13e9470-69f9-4ab1-bb36-09c6ce49abcf",
+                  "title": "Alteration of API requests or responses in transit",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "An attacker modifies the API request or response data in transit, potentially altering functionality or stealing data.",
+                  "mitigation": "Implement HTTPS for all traffic, validate all requests and responses, and use WAF to detect and block malicious requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "8"
+                },
+                {
+                  "id": "d817edea-a1ad-4910-9159-171710d71317",
+                  "title": "Overloading API Gateway with requests leading to service disruption",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Overloading API Gateway with a high volume of requests, causing disruption of\nservice.",
+                  "mitigation": "Use rate limiting and AWS Shield for DDoS protection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "9"
+                },
+                {
+                  "id": "5e0e4f0a-2f3d-4e39-91bd-63ecf756ef23",
+                  "title": "Unintended exposure of backend information via error messages or misconfigurations.",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Unintended exposure of backend information through error messages or misconfigured APIs.",
+                  "mitigation": "Implement proper error handling that masks sensitive details and review API Gateway logging settings.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "7"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request auth",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "66d37bcc-5b4e-4a7f-8cbe-acd076ed7340",
+            "labels": [
+              "request auth"
+            ],
+            "source": {
+              "x": 174,
+              "y": 320
+            },
+            "target": {
+              "cell": "1bedbc22-977b-4e08-a90b-e8f41c282538"
+            },
+            "vertices": [
+              {
+                "x": 230,
+                "y": 210
+              },
+              {
+                "x": 340,
+                "y": 179.5
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Put objects",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "20fb7a81-3319-4400-af91-533540b3095a",
+            "labels": [
+              "Put objects"
+            ],
+            "source": {
+              "cell": "834ee1e9-9714-4d50-9b87-359d7b90f1f9"
+            },
+            "target": {
+              "cell": "8adae799-43b3-453e-bc1d-67280fa39bbb"
+            },
+            "vertices": [
+              {
+                "x": 1050.0000000000005,
+                "y": 564.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "HTTP",
+              "threats": []
+            },
+            "id": "ed50b7a4-529f-4832-a811-3922ae2a1e5f",
+            "labels": [
+              "HTTP response"
+            ],
+            "source": {
+              "cell": "7cf391a5-3b09-4644-a48c-5557dbf4e0e9"
+            },
+            "target": {
+              "cell": "834ee1e9-9714-4d50-9b87-359d7b90f1f9"
+            },
+            "vertices": [
+              {
+                "x": 1290.0000000000005,
+                "y": 564.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Local network",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "be1e8db5-2f6e-4e2e-8eb8-8a609bf7d228",
+            "labels": [
+              "Local network"
+            ],
+            "source": {
+              "x": 160,
+              "y": 580
+            },
+            "target": {
+              "x": 210,
+              "y": 170
+            },
+            "vertices": [
+              {
+                "x": 290,
+                "y": 430
+              },
+              {
+                "x": 310,
+                "y": 350
+              },
+              {
+                "x": 270,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "bf68292e-7578-4aec-bf07-0cfe9b1da995",
+            "labels": [
+              "Internet"
+            ],
+            "source": {
+              "x": 390,
+              "y": -50
+            },
+            "target": {
+              "x": 350,
+              "y": 590
+            },
+            "vertices": [
+              {
+                "x": 430,
+                "y": 380
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "AWS",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "09140309-2524-4d27-adf7-3c59fce1eed5",
+            "labels": [
+              "AWS"
+            ],
+            "source": {
+              "x": 570,
+              "y": -60
+            },
+            "target": {
+              "x": 480,
+              "y": 590
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "grant acce",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "703cdbf5-ae8e-4b7e-b615-0836f470cfa5",
+            "labels": [
+              "grant access"
+            ],
+            "source": {
+              "cell": "1bedbc22-977b-4e08-a90b-e8f41c282538"
+            },
+            "target": {
+              "x": 210,
+              "y": 320
+            },
+            "vertices": [
+              {
+                "x": 290,
+                "y": 230
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Get objects",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "48b430fc-ae1b-4211-a858-02cfbeacb7c9",
+            "labels": [
+              "Get objects"
+            ],
+            "source": {
+              "cell": "8adae799-43b3-453e-bc1d-67280fa39bbb"
+            },
+            "target": {
+              "cell": "834ee1e9-9714-4d50-9b87-359d7b90f1f9"
+            },
+            "vertices": [
+              {
+                "x": 1050.0000000000005,
+                "y": 514.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP:8080  request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "cce6c0c0-5733-436a-b732-ad39f3ef0a00",
+            "labels": [
+              "HTTP:8080  request"
+            ],
+            "source": {
+              "cell": "7cf391a5-3b09-4644-a48c-5557dbf4e0e9"
+            },
+            "target": {
+              "cell": "ebc521b7-febd-4ee3-ba7b-e67502d80e23"
+            },
+            "vertices": [
+              {
+                "x": 1300,
+                "y": 450
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP:8080 response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "HTTP",
+              "threats": []
+            },
+            "id": "732a11db-d439-45b9-b677-004a6dd32547",
+            "labels": [
+              "HTTP:8080 response"
+            ],
+            "source": {
+              "cell": "ebc521b7-febd-4ee3-ba7b-e67502d80e23"
+            },
+            "target": {
+              "cell": "7cf391a5-3b09-4644-a48c-5557dbf4e0e9"
+            },
+            "vertices": [
+              {
+                "x": 1410.0000000000005,
+                "y": 414.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "get credentials",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "f164da8b-c44a-405d-9d1c-7fdb9b0aef0e",
+            "labels": [
+              "get credentials"
+            ],
+            "source": {
+              "cell": "034d07b8-a021-442e-bdc0-7fc9018582ef"
+            },
+            "target": {
+              "cell": "61e2bd67-bf57-4afd-a891-a25b54e358c4"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "API response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "1e7ad012-c0ae-4116-81b2-334ac41d5cb2",
+            "labels": [
+              "API response"
+            ],
+            "source": {
+              "cell": "a88a2a53-997c-4ce8-bc8c-00195fd0a944"
+            },
+            "target": {
+              "cell": "61e2bd67-bf57-4afd-a891-a25b54e358c4"
+            },
+            "vertices": [
+              {
+                "x": 320,
+                "y": 360
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "API request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "50b68c48-5adb-48e3-b0b6-103dc15c0ecf",
+            "labels": [
+              "API request"
+            ],
+            "source": {
+              "cell": "61e2bd67-bf57-4afd-a891-a25b54e358c4"
+            },
+            "target": {
+              "cell": "a88a2a53-997c-4ce8-bc8c-00195fd0a944"
+            },
+            "vertices": [
+              {
+                "x": 360,
+                "y": 330
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Put objects",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "b8bbb252-959b-4ee2-a2ca-1749ebe07232",
+            "labels": [
+              "Put objects"
+            ],
+            "source": {
+              "cell": "61e2bd67-bf57-4afd-a891-a25b54e358c4"
+            },
+            "target": {
+              "cell": "8adae799-43b3-453e-bc1d-67280fa39bbb"
+            },
+            "vertices": [
+              {
+                "x": 390.00000000000045,
+                "y": 454.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Get objects",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "f2a2d9a0-807e-4bc3-93b1-ef34d6bc1fc2",
+            "labels": [
+              "Get objects"
+            ],
+            "source": {
+              "cell": "8adae799-43b3-453e-bc1d-67280fa39bbb"
+            },
+            "target": {
+              "cell": "61e2bd67-bf57-4afd-a891-a25b54e358c4"
+            },
+            "vertices": [
+              {
+                "x": 520.0000000000005,
+                "y": 534.9999999999982
+              },
+              {
+                "x": 360.00000000000045,
+                "y": 484.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "pull container",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "440ca268-f6a9-412b-9277-01331692ab63",
+            "labels": [
+              "pull container"
+            ],
+            "source": {
+              "cell": "9b2c731b-d3bb-48f7-947c-4a79c66fb636"
+            },
+            "target": {
+              "cell": "ebc521b7-febd-4ee3-ba7b-e67502d80e23"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "set status",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "9d8db085-f731-4d2d-b377-b9d875333c20",
+            "labels": [
+              "set status"
+            ],
+            "source": {
+              "cell": "d2a126c6-3912-405e-9cde-5a4e916c1379"
+            },
+            "target": {
+              "cell": "2661a9d2-25e2-44c4-b04d-65f24f957979"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "get logs",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "7db9ca7e-5df0-4340-a997-ce4bc781387f",
+            "labels": [
+              "get logs"
+            ],
+            "source": {
+              "cell": "31f1c9c9-974d-42ff-a66b-7de8f9e8cbde"
+            },
+            "target": {
+              "cell": "d2a126c6-3912-405e-9cde-5a4e916c1379"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "HTTP",
+              "threats": []
+            },
+            "id": "66691720-778f-420f-a0de-0c0cdf0adc38",
+            "labels": [
+              "HTTP request"
+            ],
+            "source": {
+              "cell": "834ee1e9-9714-4d50-9b87-359d7b90f1f9"
+            },
+            "target": {
+              "cell": "7cf391a5-3b09-4644-a48c-5557dbf4e0e9"
+            },
+            "vertices": [
+              {
+                "x": 1280.0000000000005,
+                "y": 504.9999999999982
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "log",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "c27f381d-a74d-4fbc-8fe9-024ba3c8dfb9",
+            "labels": [
+              "log"
+            ],
+            "source": {
+              "cell": "2537fb5f-9d25-4bac-a287-4d4b14556f75"
+            },
+            "target": {
+              "cell": "31f1c9c9-974d-42ff-a66b-7de8f9e8cbde"
+            },
+            "vertices": [
+              {
+                "x": 1340,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "3eb5d07c-59d4-4ca9-943d-237fbb7fccb9",
+            "labels": [
+              "HTTPS request"
+            ],
+            "source": {
+              "cell": "85323289-af70-44b1-89bc-b9d6e4bb600a"
+            },
+            "target": {
+              "cell": "a88a2a53-997c-4ce8-bc8c-00195fd0a944"
+            },
+            "vertices": [
+              {
+                "x": 690,
+                "y": 320
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "753ca1e0-9a08-4f13-841c-c71074bddb9c",
+            "labels": [
+              "HTTPS request"
+            ],
+            "source": {
+              "cell": "a88a2a53-997c-4ce8-bc8c-00195fd0a944"
+            },
+            "target": {
+              "cell": "85323289-af70-44b1-89bc-b9d6e4bb600a"
+            },
+            "vertices": [
+              {
+                "x": 690,
+                "y": 390
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "get status",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "ce611fd1-feed-4e17-91bf-dd8c71f70c4a",
+            "labels": [
+              "get status"
+            ],
+            "source": {
+              "cell": "2661a9d2-25e2-44c4-b04d-65f24f957979"
+            },
+            "target": {
+              "cell": "85323289-af70-44b1-89bc-b9d6e4bb600a"
+            },
+            "vertices": [
+              {
+                "x": 820,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 850.0000000000005,
+              "y": 504.9999999999982
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "S3"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 16,
+            "id": "8adae799-43b3-453e-bc1d-67280fa39bbb",
+            "data": {
+              "type": "tm.Store",
+              "name": "S3",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": true,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "965dc99b-3c24-42c7-a835-27b3df435248",
+                  "title": "Misconfigured bucket permissions allowing public or unauthorized access",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Data leaks resulting from misconfigured S3 bucket permissions, making data publicly accessible unintentionally.",
+                  "mitigation": "Regularly audit S3 bucket policies and ACLs, use AWS Trusted Advisor to identify and rectify permissions issues, and enable default encryption for all objects stored in S3.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "9"
+                },
+                {
+                  "id": "e0752fd4-c997-4390-90f3-a420a6d5655d",
+                  "title": "Unauthorized changes to data stored in S3 buckets",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Unauthorized alteration of data stored in S3 buckets, leading to corruption or loss.",
+                  "mitigation": "Enable S3 versioning to keep multiple variants of an object in the same bucket, use MFA Delete\ncapability, and configure bucket policies to restrict who can modify data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "9"
+                },
+                {
+                  "id": "17fdb72d-30bd-4f62-9cb2-412641eb43c4",
+                  "title": "Excessive operations or large object uploads consuming bandwidth or storage",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excessive, unintended operations (GET, PUT) or large object uploads that consume excessive bandwidth or storage, impacting service availability.",
+                  "mitigation": "Implement request rate limiting, monitor traffic with AWS CloudTrail, and use lifecycle policies to\narchive or delete old/unneeded objects.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "7"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1105,
+              "y": 309.9999999999999
+            },
+            "size": {
+              "width": 70,
+              "height": 70
+            },
+            "attrs": {
+              "text": {
+                "text": "Nuclarity"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 17,
+            "id": "ebc521b7-febd-4ee3-ba7b-e67502d80e23",
+            "data": {
+              "type": "tm.Process",
+              "name": "Nuclarity",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "836f51b4-c2fc-4e16-b1fc-eb0543469dc9",
+                  "title": "Impersonating the container to interact with other services",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker impersonates the Nuclarity container to interact with other services or containers fraudulently.",
+                  "mitigation": "Utilize mutual TLS (mTLS) for service-to-service communications, implement strict IAM roles for\nECS tasks, and enforce authentication at the API level.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "8"
+                },
+                {
+                  "id": "81ea6ff6-9432-4ded-b4ac-aee1d84e4df0",
+                  "title": "Malicious modification of the container’s runtime configuration",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Malicious modification of the container’s runtime configuration or code, potentially altering the behavior of the container.",
+                  "mitigation": "Implement image signing and verification using Docker Content Trust or similar technologies. Use\nread-only filesystems where possible and restrict runtime privileges.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "9"
+                },
+                {
+                  "id": "e4aeb621-04a1-4570-8025-7c9761c117c4",
+                  "title": "Exploiting vulnerabilities within the container or the host to gain elevated privileges",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker exploits vulnerabilities within the container or the host to gain elevated privileges.",
+                  "mitigation": "Limit container privileges using least privilege principles and utilize AWS IAM roles for tasks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "9"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1141.0000000000005,
+              "y": 504.9999999999982
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Lambda"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 18,
+            "id": "834ee1e9-9714-4d50-9b87-359d7b90f1f9",
+            "data": {
+              "type": "tm.Process",
+              "name": "Lambda",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1350.0000000000005,
+              "y": 504.9999999999982
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "NLB"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 19,
+            "id": "7cf391a5-3b09-4644-a48c-5557dbf4e0e9",
+            "data": {
+              "type": "tm.Process",
+              "name": "NLB",
+              "description": "Network Load Balancer",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "9e156050-860c-4255-a581-f6033857fd93",
+                  "title": "Overloading the NLB to disrupt legitimate traffic handling",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Unauthorized modification of NLB configuration settings that could reroute traffic or degrade service quality.",
+                  "mitigation": "Restrict access to NLB configuration settings using IAM roles. Enable logging and monitoring of all changes using AWS CloudTrail and CloudWatch.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": "8"
+                },
+                {
+                  "id": "13f8c437-d539-4d93-9011-12f640954532",
+                  "title": "Intercepting or altering traffic routed through the NLB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Unauthorized modification of NLB configuration settings that could reroute traffic or degrade service quality.",
+                  "mitigation": "Restrict access to NLB configuration settings using IAM roles. Enable logging and monitoring of all changes using AWS CloudTrail and CloudWatch.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "8"
+                },
+                {
+                  "id": "a61b31a9-dc5d-45d8-8cd3-729d77f4ca18",
+                  "title": "Mimicking legitimate services behind the NLB to capture traffic",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker impersonates the NLB or backend systems to intercept or redirect traffic.",
+                  "mitigation": "Use TLS listeners to secure data in transit and ensure authenticity. Implement network ACLs and security groups to restrict traffic only to known sources and destinations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "8"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 40,
+              "y": 440
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Credential Store"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 20,
+            "id": "034d07b8-a021-442e-bdc0-7fc9018582ef",
+            "data": {
+              "type": "tm.Store",
+              "name": "Credential Store",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 850.0000000000005,
+              "y": 314.9999999999998
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "ECR"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 21,
+            "id": "9b2c731b-d3bb-48f7-947c-4a79c66fb636",
+            "data": {
+              "type": "tm.Store",
+              "name": "ECR",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "f6ef5747-555a-44c6-9ae9-293158ef435b",
+                  "title": "Unauthorized modifications to container images.",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Unauthorized modifications to container images stored in ECR, potentially introducing malware or other malicious changes.",
+                  "mitigation": "Use ECR image scanning to detect vulnerabilities or unauthorized changes, enable image immutability, and restrict push/pull access via IAM roles.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "9"
+                },
+                {
+                  "id": "8d53189a-f4e2-4dc0-8006-b28d20a84da5",
+                  "title": "Exposure of sensitive information through image configurations or layers",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Exposure of sensitive data embedded in Docker images or configuration files.",
+                  "mitigation": "Implement least privilege access controls, use private repositories, and scan images for sensitive data using automated tools before pushing to ECR.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": "8"
+                },
+                {
+                  "id": "f34e56eb-a522-4490-9bd7-4930ff3da7d0",
+                  "title": "Overloading ECR with requests or pushing oversized images",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Overloading the registry with a large number of requests or large images, potentially impacting the availability.",
+                  "mitigation": "Set quotas and request rate limits on repository operations, monitor usage patterns, and configure alerts for anomalous activities.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": "7"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 850.0000000000005,
+              "y": 139.99999999999818
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "DynamoDB"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 22,
+            "id": "2661a9d2-25e2-44c4-b04d-65f24f957979",
+            "data": {
+              "type": "tm.Store",
+              "name": "DynamoDB",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "284f2621-f08f-4f96-a6f0-2692abd13a49",
+                  "title": "Unauthorized access to data stored in DynamoDB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized access to data stored in DynamoDB.",
+                  "mitigation": "Enable encryption at rest, use fine-grained access controls, and regularly audit access logs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "9"
+                },
+                {
+                  "id": "8228a34f-3e39-464d-92ab-5c2a91a2a60e",
+                  "title": "Unauthorized modification of data.",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Data in DynamoDB is modified or deleted without authorization.",
+                  "mitigation": "Implement conditional writes, enable versioning where applicable, and use access control mechanisms to restrict data modification.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "8"
+                },
+                {
+                  "id": "d5c9ca14-2a64-47a2-bb89-40941167ad90",
+                  "title": "Flooding DynamoDB with high volume requests to disrupt service.",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "High request rates or large item sizes cause throughput issues, impacting database performance.",
+                  "mitigation": "Use DynamoDB Auto Scaling, monitor performance metrics, and implement partitioning strategies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "7"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1320.0000000000005,
+              "y": 139.99999999999818
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Cloudwatch"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 23,
+            "id": "31f1c9c9-974d-42ff-a66b-7de8f9e8cbde",
+            "data": {
+              "type": "tm.Store",
+              "name": "Cloudwatch",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "d3358b16-88f0-473e-a071-4828fb3da58e",
+                  "title": "Failure to log important security events, allowing malicious activities to go undetected",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Insufficient logging that fails to capture important security events, allowing malicious activities to go\nundetected.",
+                  "mitigation": "Configure CloudWatch Logs to capture all critical logs from AWS resources, ensure log integrity and immutability, and regularly audit log configurations.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": "9"
+                },
+                {
+                  "id": "8eb7b343-da57-436b-8d39-c665e3c150b1",
+                  "title": "Unauthorized access to logs containing sensitive information",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Unauthorized access to logs containing sensitive or confidential information.",
+                  "mitigation": "Implement strict IAM policies that limit access to logs, enable encryption for CloudWatch Logs at\nrest using KMS, and use log data masking where necessary.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "8"
+                },
+                {
+                  "id": "70aa84eb-b1f4-4a33-b61a-65606aae6b3d",
+                  "title": "Altering or deleting logs to hide malicious activity",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Unauthorized modification or deletion of logs to hide malicious activity.",
+                  "mitigation": "Enable access logging for CloudWatch, use multifactor authentication for log access, and ensure logs are stored in an immutable format.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": "8"
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1110,
+              "y": 139.99999999999818
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Lambda"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 24,
+            "id": "d2a126c6-3912-405e-9cde-5a4e916c1379",
+            "data": {
+              "type": "tm.Process",
+              "name": "Lambda",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 740,
+              "y": 314.9999999999998
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Lambda"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 25,
+            "id": "85323289-af70-44b1-89bc-b9d6e4bb600a",
+            "data": {
+              "type": "tm.Process",
+              "name": "Lambda",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "875b7b60-bd6d-4b3a-a579-226be9b9e013",
+                  "title": "Execution of unauthorized commands or access to resources due to overly permissive IAM roles.",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "An attacker exploits overly permissive IAM roles assigned to Lambda functions to gain unauthorized access to other AWS services.",
+                  "mitigation": "Apply the principle of least privilege to IAM roles. Regularly audit permissions and use IAM policies that limit access scope.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "9"
+                },
+                {
+                  "id": "af85e58b-13cf-43e0-a79b-1f8c94e68f01",
+                  "title": "Modifying the code or environment variables of the Lambda function.",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Unauthorized modification of Lambda code or environment configurations leading to altered functionality.",
+                  "mitigation": "Use version control for Lambda functions and restrict deployment permissions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "8"
+                },
+                {
+                  "id": "54aecabe-78a9-4ddb-8578-8a2061761c48",
+                  "title": "Triggering Lambda to exhaust resources",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Triggering Lambda to exhaust resources, e.g., through infinite loops or excessive resource consumption.",
+                  "mitigation": "Implement concurrency limits and cost control measures, and monitor execution patterns.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "7"
+                }
+              ]
+            }
+          }
+        ],
+        "description": "Cloud deployment"
+      },
+      {
+        "id": 1,
+        "title": "On-prem",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "On-prem deployment"
+      }
+    ],
+    "diagramTop": 2,
+    "reviewer": "Tomas Brants",
+    "threatTop": 33
   }
 }
